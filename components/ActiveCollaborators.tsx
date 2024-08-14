@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const ActiveCollaborators = () => {
   const others = useOthers();
-  const collaborators = others.filter((other) => other.info);
+  const collaborators = others.map((other) => other.info);
 
   return (
     <ul className="collaborators-list">

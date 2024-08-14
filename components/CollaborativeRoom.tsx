@@ -5,9 +5,11 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { ClientSideSuspense, RoomProvider } from "@liveblocks/react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import ActiveCollaborators from "./ActiveCollaborators";
 import { Editor } from "./editor/Editor";
 import Header from "./Header";
 import Loader from "./Loader";
+import ShareModal from "./ShareModal";
 import { Input } from "./ui/input";
 
 const CollaborativeRoom = ({
@@ -112,6 +114,13 @@ const CollaborativeRoom = ({
               {loading && <p className="text-sm text-gray-400">Saving...</p>}
             </div>
             <div className="flex w-full flex-1 justify-end gap-2 sm:gap-3">
+              <ActiveCollaborators />
+              <ShareModal
+                roomId={roomId}
+                collaborators={users}
+                currentUserType={currentUserType}
+                creatorId={roomMetadata.creatorId}
+              />
               <SignedOut>
                 <SignInButton />
               </SignedOut>
